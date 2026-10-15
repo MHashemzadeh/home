@@ -441,6 +441,7 @@
     padding-block: clamp(56px, 8vw, 104px);
     scroll-margin-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
   }
+  .section--compact { padding-block: clamp(40px, 5vw, 64px); }
   .section-grid {
     display: grid;
     grid-template-columns: 200px minmax(0, 1fr);
@@ -712,7 +713,7 @@
   @media (max-width: 760px) { .cols { grid-template-columns: minmax(0, 1fr); } }
 
   /* Hobbies */
-  .hobbies-text { max-width: 62ch; margin: 0; color: var(--ink-2); }
+  .hobbies-text, .languages-text { max-width: 62ch; margin: 0; color: var(--ink-2); }
 
   /* Contact */
   .contact-lede {
@@ -1061,6 +1062,7 @@
             <div class="tl-body">
               <h3>Student Researcher</h3>
               <p class="tl-org">ServiceNow Research · Montréal</p>
+              <p class="tl-note">Mentor: <a href="https://sites.google.com/view/nicolasag" target="_blank" rel="noopener">Nicolas Gontier</a>.</p>
             </div>
           </li>
           <li class="tl is-current">
@@ -1151,13 +1153,24 @@
     </div>
   </section>
 
-  <section class="section" id="hobbies">
+  <section class="section section--compact" id="hobbies">
     <div class="wrap section-grid">
       <div class="section-head">
         <h2>Hobbies</h2>
       </div>
       <div class="section-body">
         <p class="hobbies-text">In summer I enjoy playing tennis and volleyball, and in winter I go skiing and ice skating. I also love art, and in my free time I paint with pastels.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--compact" id="languages">
+    <div class="wrap section-grid">
+      <div class="section-head">
+        <h2>Languages</h2>
+      </div>
+      <div class="section-body">
+        <p class="languages-text">I speak Farsi (native), English (professional working proficiency) and French (intermediate).</p>
       </div>
     </div>
   </section>
