@@ -487,6 +487,9 @@
     font-variant-numeric: tabular-nums;
   }
   .news p { max-width: 66ch; margin: 0; }
+  .news-toggle { margin-top: 18px; padding: 6px 14px 6px 11px; font-size: 0.8rem; }
+  .news-toggle .icon { transition: transform 0.2s ease; }
+  .news-toggle.is-open .icon { transform: rotate(180deg); }
   @media (max-width: 520px) {
     .news li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   }
@@ -826,7 +829,7 @@
         <p class="section-note">Latest first</p>
       </div>
       <div class="section-body">
-        <ul class="news">
+        <ul class="news" id="news-list">
           <li><time datetime="2026-10">Oct 2026</time><p>I'm co-organizing <a href="https://realm-workshop.github.io/" target="_blank" rel="noopener">REALM</a>, the Second Workshop for Research on Agent Language Models, at EMNLP 2026 in Budapest on October 29.</p></li>
           <li><time datetime="2026-09">Sep 2026</time><p><a href="https://arxiv.org/abs/2606.00686" target="_blank" rel="noopener">Dialectics of Alignment</a> was accepted at NeurIPS 2026.</p></li>
           <li><time datetime="2026-09">Sep 2026</time><p>The <a href="https://arxiv.org/abs/2609.07925" target="_blank" rel="noopener">FrogNano</a> technical report is out. I'm a core contributor and worked on test-time scaling for the agent.</p></li>
@@ -836,6 +839,10 @@
           <li><time datetime="2025-07">Jul 2025</time><p>Joined ServiceNow Research as a student researcher.</p></li>
           <li><time datetime="2024-01">Jan 2024</time><p>Started my PhD at Mila and Université de Montréal with Sarath Chandar, supported by a DIRO Excellence Scholarship.</p></li>
         </ul>
+        <button class="pill-btn news-toggle" id="news-toggle" type="button" aria-expanded="false" aria-controls="news-list" hidden>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          <span>Show earlier news</span>
+        </button>
       </div>
     </div>
   </section>
@@ -1340,6 +1347,25 @@
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
     document.querySelectorAll('main > section[id]').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- News: show the latest three, the rest behind a button ---------- */
+  var newsList = document.getElementById('news-list');
+  var newsToggle = document.getElementById('news-toggle');
+  var olderNews = Array.prototype.slice.call(newsList.children, 3);
+  if (olderNews.length) {
+    var newsLabel = newsToggle.querySelector('span');
+    var setNews = function (open) {
+      olderNews.forEach(function (li) { li.hidden = !open; });
+      newsToggle.setAttribute('aria-expanded', String(open));
+      newsToggle.classList.toggle('is-open', open);
+      newsLabel.textContent = open ? 'Show less' : 'Show earlier news (' + olderNews.length + ')';
+    };
+    setNews(false);
+    newsToggle.hidden = false;
+    newsToggle.addEventListener('click', function () {
+      setNews(newsToggle.getAttribute('aria-expanded') !== 'true');
+    });
   }
 
   /* ---------- Publication filters ---------- */
