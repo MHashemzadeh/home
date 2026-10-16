@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Maryam Hashemzadeh</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Maryam Hashemzadeh is a PhD student at Mila and Université de Montréal working on large language models: safety and alignment, diffusion language models, multi-token prediction and coding agents.">
+<meta name="description" content="Maryam Hashemzadeh is a PhD candidate at Mila and Université de Montréal working on large language models: safety and alignment, diffusion language models, multi-token prediction and coding agents.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
@@ -39,6 +39,8 @@
     --shadow: 0 1px 2px rgb(15 27 29 / 0.06), 0 18px 40px -18px rgb(15 27 29 / 0.3);
     --on-photo: #FFFFFF;
     --photo-scrim: rgb(0 0 0 / 0.55);
+    --logo-bg: #FFFFFF;
+    --logo-ink: #3F5356;
     --show-sun: none;
     --show-moon: block;
 
@@ -441,6 +443,7 @@
     padding-block: clamp(56px, 8vw, 104px);
     scroll-margin-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
   }
+  .section--compact { padding-block: clamp(40px, 5vw, 64px); }
   .section-grid {
     display: grid;
     grid-template-columns: 200px minmax(0, 1fr);
@@ -487,6 +490,9 @@
     font-variant-numeric: tabular-nums;
   }
   .news p { max-width: 66ch; margin: 0; }
+  .news-toggle { margin-top: 18px; padding: 6px 14px 6px 11px; font-size: 0.8rem; }
+  .news-toggle .icon { transition: transform 0.2s ease; }
+  .news-toggle.is-open .icon { transform: rotate(180deg); }
   @media (max-width: 520px) {
     .news li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   }
@@ -679,7 +685,31 @@
     line-height: 1.3;
     letter-spacing: -0.01em;
   }
-  .tl-org { margin: 2px 0 0; color: var(--ink-2); font-size: 1rem; }
+  .tl-org { display: flex; align-items: center; gap: 8px; margin: 4px 0 0; color: var(--ink-2); font-size: 1rem; }
+  .org-logos { display: inline-flex; flex: none; gap: 4px; }
+  .org-logo {
+    display: inline-grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: var(--logo-bg);
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+  .org-logo img { width: 16px; height: 16px; }
+  .org-logo.is-missing img { display: none; }
+  .org-logo.is-missing::after {
+    content: attr(data-initials);
+    color: var(--logo-ink);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .org-logo--sm { width: 18px; height: 18px; border-radius: 4px; vertical-align: middle; margin-inline: 1px 2px; }
+  .org-logo--sm img { width: 13px; height: 13px; }
+  .org-logo--sm.is-missing::after { font-size: 7px; }
   .tl-note { max-width: 62ch; margin: 6px 0 0; color: var(--ink-2); font-size: 0.98rem; line-height: 1.5; }
   @media (max-width: 560px) {
     .tl { grid-template-columns: 20px minmax(0, 1fr); column-gap: 12px; }
@@ -707,6 +737,46 @@
   }
   .facts .what { grid-column: 1 / -1; color: var(--ink-2); font-size: 0.96rem; line-height: 1.45; }
   @media (max-width: 760px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Hobbies */
+  .hobbies-text, .languages-text { max-width: 62ch; margin: 0; color: var(--ink-2); }
+  .hobbies-body { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: start; }
+  .memories { display: flex; gap: 10px; }
+  .memory {
+    position: relative;
+    flex: none;
+    width: 126px;
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--mask);
+    box-shadow: var(--shadow);
+  }
+  .memory img, .memory video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .memory-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--photo-scrim);
+    color: var(--on-photo);
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .memory-play svg { width: 18px; height: 18px; margin-left: 3px; }
+  .memory-play:hover { transform: translate(-50%, -50%) scale(1.08); }
+  .memory--video.is-playing .memory-play { opacity: 0; pointer-events: none; }
+  .memory--video.is-playing video { cursor: pointer; }
+  @media (max-width: 700px) { .hobbies-body { grid-template-columns: minmax(0, 1fr); } }
 
   /* Contact */
   .contact-lede {
@@ -752,7 +822,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230F1B1D'/%3E%3Ctext x='32' y='40.5' font-family='Helvetica,Arial,sans-serif' font-size='23' font-weight='700' fill='%23F3F6F4' text-anchor='middle'%3EMH%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Maryam Hashemzadeh">
-<meta property="og:description" content="PhD student at Mila and Université de Montréal working on large language models, diffusion language models, coding agents and AI safety.">
+<meta property="og:description" content="PhD candidate at Mila and Université de Montréal working on large language models, diffusion language models, coding agents and AI safety.">
 <meta property="og:image" content="assets/profile.jpg">
 <meta name="twitter:card" content="summary">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
@@ -786,9 +856,9 @@
   <section class="hero" id="about" aria-label="About">
     <div class="wrap hero-grid">
       <div class="hero-text">
-        <p class="now"><span class="now-dot" aria-hidden="true"></span>Now: Research intern at Microsoft Research Montréal</p>
+        <p class="now"><span class="now-dot" aria-hidden="true"></span><span>Now: Research intern at <span class="org-logo org-logo--sm" data-initials="MS" aria-hidden="true"><img src="assets/logos/microsoft.png" alt="" width="13" height="13" decoding="async"></span> Microsoft Research Montréal</span></p>
         <h1 class="name"><span>Maryam</span> <span>Hashemzadeh</span></h1>
-        <p class="role">PhD student · Mila &amp; Université de Montréal</p>
+        <p class="role">PhD candidate · Mila &amp; Université de Montréal</p>
         <p class="statement" id="statement"><span class="tok">I</span> <span class="tok">study</span> <span class="tok">how</span> <span class="tok">large</span> <span class="tok">language</span> <span class="tok">models</span> <span class="tok">generate</span> <span class="tok">text,</span> <span class="tok">act</span> <span class="tok">as</span> <span class="tok">agents</span> <span class="tok">and</span> <span class="tok">stay</span> <span class="tok">safe.</span></p>
         <div class="sampler">
           <span class="sampler-status" id="sampler-status" title="This sentence is written the way a masked diffusion language model writes: every word starts masked, and words are revealed in parallel over 8 steps.">Decoded in 8 parallel steps · t = 0.00</span>
@@ -798,7 +868,7 @@
           </button>
         </div>
         <div class="bio">
-          <p>I'm a PhD student at <a href="https://mila.quebec/en" target="_blank" rel="noopener">Mila</a> and Université de Montréal, advised by <a href="http://sarathchandar.in/" target="_blank" rel="noopener">Sarath Chandar</a> and <a href="https://www.microsoft.com/en-us/research/people/macote/" target="_blank" rel="noopener">Marc-Alexandre Côté</a>, and currently a research intern at Microsoft Research Montréal. I work on large language models and the agents built on them, including safety methods that keep models helpful, test-time scaling for coding agents and diffusion language models, and generating several tokens at once with diffusion and multi-token prediction. Previously, I was a student researcher at ServiceNow Research and did my M.Sc. on offline reinforcement learning at the University of Alberta and Amii.</p>
+          <p>I'm a PhD candidate at <a href="https://mila.quebec/en" target="_blank" rel="noopener">Mila</a> and Université de Montréal, advised by <a href="http://sarathchandar.in/" target="_blank" rel="noopener">Sarath Chandar</a> and <a href="https://www.microsoft.com/en-us/research/people/macote/" target="_blank" rel="noopener">Marc-Alexandre Côté</a>, and currently a research intern at Microsoft Research Montréal. I work on large language models and the agents built on them, including safety methods that keep models helpful, test-time scaling for coding agents and diffusion language models, and multi-token prediction. Previously, I was a student researcher at ServiceNow Research and did my M.Sc. on offline reinforcement learning at the University of Alberta and Amii.</p>
         </div>
         <ul class="links">
           <li><a class="link-btn link-btn--primary" href="mailto:maryam.hashemzadeh@mila.quebec"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>Email</a></li>
@@ -823,16 +893,20 @@
         <p class="section-note">Latest first</p>
       </div>
       <div class="section-body">
-        <ul class="news">
+        <ul class="news" id="news-list">
           <li><time datetime="2026-10">Oct 2026</time><p>I'm co-organizing <a href="https://realm-workshop.github.io/" target="_blank" rel="noopener">REALM</a>, the Second Workshop for Research on Agent Language Models, at EMNLP 2026 in Budapest on October 29.</p></li>
           <li><time datetime="2026-09">Sep 2026</time><p><a href="https://arxiv.org/abs/2606.00686" target="_blank" rel="noopener">Dialectics of Alignment</a> was accepted at NeurIPS 2026.</p></li>
           <li><time datetime="2026-09">Sep 2026</time><p>The <a href="https://arxiv.org/abs/2609.07925" target="_blank" rel="noopener">FrogNano</a> technical report is out. I'm a core contributor and worked on test-time scaling for the agent.</p></li>
           <li><time datetime="2026-05">May 2026</time><p>New preprint showing that <a href="https://arxiv.org/abs/2605.11845" target="_blank" rel="noopener">probabilistic calibration is a trainable capability</a> in language models.</p></li>
           <li><time datetime="2026-04">Apr 2026</time><p>New preprint, <a href="https://arxiv.org/abs/2604.04356" target="_blank" rel="noopener">REAM</a>, on merging experts to compress mixture-of-experts LLMs.</p></li>
-          <li><time datetime="2026-03">Mar 2026</time><p>Started a research internship at Microsoft Research Montréal, working on coding agents and diffusion language models.</p></li>
+          <li><time datetime="2026-03">Mar 2026</time><p>Started a research internship at Microsoft Research Montréal, working on coding agents.</p></li>
           <li><time datetime="2025-07">Jul 2025</time><p>Joined ServiceNow Research as a student researcher.</p></li>
           <li><time datetime="2024-01">Jan 2024</time><p>Started my PhD at Mila and Université de Montréal with Sarath Chandar, supported by a DIRO Excellence Scholarship.</p></li>
         </ul>
+        <button class="pill-btn news-toggle" id="news-toggle" type="button" aria-expanded="false" aria-controls="news-list" hidden>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          <span>Show earlier news</span>
+        </button>
       </div>
     </div>
   </section>
@@ -1041,8 +1115,8 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Research Intern</h3>
-              <p class="tl-org">Microsoft Research · Montréal</p>
-              <p class="tl-note">Coding agents and diffusion language models, including test-time scaling for FrogNano and context compaction for coding agents.</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="MS"><img src="assets/logos/microsoft.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>Microsoft Research · Montréal</p>
+              <p class="tl-note">On the <a href="https://microsoft.github.io/debug-gym/" target="_blank" rel="noopener">Froggy team</a>, working on coding agents, including test-time scaling for FrogNano and context compaction for coding agents.</p>
             </div>
           </li>
           <li class="tl">
@@ -1050,7 +1124,8 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Student Researcher</h3>
-              <p class="tl-org">ServiceNow Research · Montréal</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="SN"><img src="assets/logos/servicenow.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>ServiceNow Research · Montréal</p>
+              <p class="tl-note">Designing web agents. Mentor: <a href="https://sites.google.com/view/nicolasag" target="_blank" rel="noopener">Nicolas Gontier</a>.</p>
             </div>
           </li>
           <li class="tl is-current">
@@ -1058,7 +1133,7 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>PhD, Computer Science</h3>
-              <p class="tl-org">Mila &amp; Université de Montréal</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="M"><img src="assets/logos/mila.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="org-logo" data-initials="U"><img src="assets/logos/umontreal.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>Mila &amp; Université de Montréal</p>
               <p class="tl-note">Advisors: Sarath Chandar and Marc-Alexandre Côté.</p>
             </div>
           </li>
@@ -1067,8 +1142,8 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Associate Researcher, LLMs</h3>
-              <p class="tl-org">Mila – Quebec AI Institute · Montréal</p>
-              <p class="tl-note">LLMs and language-based agents, with Sarath Chandar and Marc-Alexandre Côté.</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="M"><img src="assets/logos/mila.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>Mila – Quebec AI Institute · Montréal</p>
+              <p class="tl-note">Language-based agents.</p>
             </div>
           </li>
           <li class="tl">
@@ -1076,8 +1151,8 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Associate Researcher, ML &amp; RL</h3>
-              <p class="tl-org">Amii · Edmonton</p>
-              <p class="tl-note">Offline reinforcement learning, with Martha White.</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="A"><img src="assets/logos/amii.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>Amii · Edmonton</p>
+              <p class="tl-note">Offline reinforcement learning.</p>
             </div>
           </li>
           <li class="tl">
@@ -1085,7 +1160,7 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>M.Sc., Computing Science</h3>
-              <p class="tl-org">University of Alberta &amp; Amii · Edmonton</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="UA"><img src="assets/logos/ualberta.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="org-logo" data-initials="A"><img src="assets/logos/amii.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>University of Alberta &amp; Amii · Edmonton</p>
               <p class="tl-note">Advisors: Alona Fyshe and Martha White.</p>
             </div>
           </li>
@@ -1094,7 +1169,7 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Research Intern</h3>
-              <p class="tl-org">ATR · Kyoto, Japan</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="ATR"><img src="assets/logos/atr.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>ATR · Kyoto, Japan</p>
               <p class="tl-note">Modelling EEG data with reinforcement learning, with Aurelio Cortese.</p>
             </div>
           </li>
@@ -1114,7 +1189,7 @@
           <div>
             <h3 class="list-h">Scholarships &amp; awards</h3>
             <ul class="facts">
-              <li><strong>FRQNT Scholarship</strong><span class="when">3 years</span><span class="what">Fonds de recherche du Québec – Nature et technologies</span></li>
+              <li><strong>FRQNT Scholarship, CAD 75,000</strong><span class="when">3 years</span><span class="what">Fonds de recherche du Québec – Nature et technologies</span></li>
               <li><strong>DIRO Excellence Scholarship</strong><span class="when">2024 – 2026</span><span class="what">Université de Montréal</span></li>
               <li><strong>Full PhD funding</strong><span class="when">2024 – now</span><span class="what">Mila – Quebec AI Institute</span></li>
               <li><strong>PhD tuition exemption scholarship</strong><span class="when">2024 – now</span><span class="what">Université de Montréal</span></li>
@@ -1128,7 +1203,7 @@
             <ul class="facts">
               <li><strong>Organizer</strong><span class="when">2026</span><span class="what"><a href="https://realm-workshop.github.io/" target="_blank" rel="noopener">REALM</a>, Second Workshop for Research on Agent Language Models, EMNLP 2026</span></li>
               <li><strong>Organizing committee</strong><span class="when">2022, 2023, 2025</span><span class="what">Conference on Lifelong Learning Agents (CoLLAs)</span></li>
-              <li><strong>Reviewer</strong><span class="when">2020 – 2025</span><span class="what">ICML, NeurIPS, ICLR, IEEE Transactions on Neural Networks and Learning Systems</span></li>
+              <li><strong>Reviewer</strong><span class="when">2020 – now</span><span class="what">ICML, NeurIPS, ICLR, IEEE Transactions on Neural Networks and Learning Systems</span></li>
               <li><strong>Tutorial developer and TA</strong><span class="when">2020, 2021</span><span class="what">Neuromatch Academy summer school</span></li>
               <li><strong>Tutorial developer</strong><span class="when">2021</span><span class="what">Amii Work-Integrated Learning Opportunity, online machine learning courses</span></li>
               <li><strong>Mentor</strong><span class="when">2021</span><span class="what">Coursera reinforcement learning course by Martha White and Adam White</span></li>
@@ -1137,6 +1212,32 @@
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--compact" id="hobbies">
+    <div class="wrap section-grid">
+      <div class="section-head">
+        <h2>Hobbies</h2>
+      </div>
+      <div class="section-body hobbies-body">
+        <p class="hobbies-text">When I'm not programming, I spend my time with my sweetheart, <a href="https://uk.linkedin.com/in/saleh-pouresmaeeli" target="_blank" rel="noopener">Saleh</a>, whose way of understanding the world never stops amazing me. In summer I enjoy playing tennis, badminton and volleyball, and in winter I go skiing and ice skating. I also love art, and whenever I have time I paint with pastels.</p>
+        <div class="memories">
+          <figure class="memory"><img src="assets/maryam-saleh.jpg" width="320" height="400" alt="Maryam and Saleh on the London Eye" loading="lazy" decoding="async"></figure>
+          <figure class="memory memory--video"><video width="256" height="320" poster="assets/maryam-saleh-poster.jpg" muted playsinline preload="none" aria-label="Maryam and Saleh's names on a light installation, with two dancing figures"><source src="assets/maryam-saleh.mp4" type="video/mp4; codecs=&quot;avc1.64000D&quot;"><source src="assets/maryam-saleh.webm" type="video/webm; codecs=&quot;vp9&quot;"></video><button class="memory-play" type="button" aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--compact" id="languages">
+    <div class="wrap section-grid">
+      <div class="section-head">
+        <h2>Languages</h2>
+      </div>
+      <div class="section-body">
+        <p class="languages-text">I speak Farsi (native), English (professional working proficiency) and French (intermediate).</p>
       </div>
     </div>
   </section>
@@ -1326,6 +1427,47 @@
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
     document.querySelectorAll('main > section[id]').forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- Hobbies video: plays only when the visitor presses play ---------- */
+  document.querySelectorAll('.memory--video').forEach(function (fig) {
+    var video = fig.querySelector('video');
+    var playBtn = fig.querySelector('.memory-play');
+    var showButton = function () { fig.classList.remove('is-playing'); };
+    playBtn.addEventListener('click', function () {
+      fig.classList.add('is-playing');
+      var started = video.play();
+      if (started && started.catch) started.catch(showButton);
+    });
+    video.addEventListener('click', function () { if (!video.paused) video.pause(); });
+    video.addEventListener('pause', showButton);
+    video.addEventListener('ended', function () { video.currentTime = 0; showButton(); });
+  });
+
+  /* ---------- Organization logos: show initials if a logo can't load ---------- */
+  document.querySelectorAll('.org-logo img').forEach(function (im) {
+    var markMissing = function () { im.parentNode.classList.add('is-missing'); };
+    if (im.complete && im.naturalWidth === 0) markMissing();
+    else im.addEventListener('error', markMissing);
+  });
+
+  /* ---------- News: show the latest three, the rest behind a button ---------- */
+  var newsList = document.getElementById('news-list');
+  var newsToggle = document.getElementById('news-toggle');
+  var olderNews = Array.prototype.slice.call(newsList.children, 3);
+  if (olderNews.length) {
+    var newsLabel = newsToggle.querySelector('span');
+    var setNews = function (open) {
+      olderNews.forEach(function (li) { li.hidden = !open; });
+      newsToggle.setAttribute('aria-expanded', String(open));
+      newsToggle.classList.toggle('is-open', open);
+      newsLabel.textContent = open ? 'Show less' : 'Show earlier news (' + olderNews.length + ')';
+    };
+    setNews(false);
+    newsToggle.hidden = false;
+    newsToggle.addEventListener('click', function () {
+      setNews(newsToggle.getAttribute('aria-expanded') !== 'true');
+    });
   }
 
   /* ---------- Publication filters ---------- */
