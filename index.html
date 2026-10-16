@@ -707,6 +707,9 @@
     font-weight: 500;
     letter-spacing: 0.02em;
   }
+  .org-logo--sm { width: 18px; height: 18px; border-radius: 4px; vertical-align: middle; margin-inline: 1px 2px; }
+  .org-logo--sm img { width: 13px; height: 13px; }
+  .org-logo--sm.is-missing::after { font-size: 7px; }
   .tl-note { max-width: 62ch; margin: 6px 0 0; color: var(--ink-2); font-size: 0.98rem; line-height: 1.5; }
   @media (max-width: 560px) {
     .tl { grid-template-columns: 20px minmax(0, 1fr); column-gap: 12px; }
@@ -816,7 +819,7 @@
   <section class="hero" id="about" aria-label="About">
     <div class="wrap hero-grid">
       <div class="hero-text">
-        <p class="now"><span class="now-dot" aria-hidden="true"></span>Now: Research intern at Microsoft Research Montréal</p>
+        <p class="now"><span class="now-dot" aria-hidden="true"></span><span>Now: Research intern at <span class="org-logo org-logo--sm" data-initials="MS" aria-hidden="true"><img src="assets/logos/microsoft.png" alt="" width="13" height="13" decoding="async"></span> Microsoft Research Montréal</span></p>
         <h1 class="name"><span>Maryam</span> <span>Hashemzadeh</span></h1>
         <p class="role">PhD candidate · Mila &amp; Université de Montréal</p>
         <p class="statement" id="statement"><span class="tok">I</span> <span class="tok">study</span> <span class="tok">how</span> <span class="tok">large</span> <span class="tok">language</span> <span class="tok">models</span> <span class="tok">generate</span> <span class="tok">text,</span> <span class="tok">act</span> <span class="tok">as</span> <span class="tok">agents</span> <span class="tok">and</span> <span class="tok">stay</span> <span class="tok">safe.</span></p>
@@ -1075,8 +1078,8 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Research Intern</h3>
-              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="MS"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&amp;sz=64" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span></span>Microsoft Research · Montréal</p>
-              <p class="tl-note">Coding agents and diffusion language models, including test-time scaling for FrogNano and context compaction for coding agents.</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="MS"><img src="assets/logos/microsoft.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>Microsoft Research · Montréal</p>
+              <p class="tl-note">On the <a href="https://microsoft.github.io/debug-gym/" target="_blank" rel="noopener">Froggy team</a>, working on coding agents and diffusion language models, including test-time scaling for FrogNano and context compaction for coding agents.</p>
             </div>
           </li>
           <li class="tl">
@@ -1084,7 +1087,7 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Student Researcher</h3>
-              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="SN"><img src="https://www.google.com/s2/favicons?domain=servicenow.com&amp;sz=64" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span></span>ServiceNow Research · Montréal</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="SN"><img src="assets/logos/servicenow.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>ServiceNow Research · Montréal</p>
               <p class="tl-note">Mentor: <a href="https://sites.google.com/view/nicolasag" target="_blank" rel="noopener">Nicolas Gontier</a>.</p>
             </div>
           </li>
@@ -1093,7 +1096,7 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>PhD, Computer Science</h3>
-              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="M"><img src="https://www.google.com/s2/favicons?domain=mila.quebec&amp;sz=64" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span><span class="org-logo" data-initials="U"><img src="https://www.google.com/s2/favicons?domain=umontreal.ca&amp;sz=64" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span></span>Mila &amp; Université de Montréal</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="M"><img src="assets/logos/mila.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="org-logo" data-initials="U"><img src="assets/logos/umontreal.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>Mila &amp; Université de Montréal</p>
               <p class="tl-note">Advisors: Sarath Chandar and Marc-Alexandre Côté.</p>
             </div>
           </li>
@@ -1102,7 +1105,7 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Associate Researcher, LLMs</h3>
-              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="M"><img src="https://www.google.com/s2/favicons?domain=mila.quebec&amp;sz=64" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span></span>Mila – Quebec AI Institute · Montréal</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="M"><img src="assets/logos/mila.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>Mila – Quebec AI Institute · Montréal</p>
               <p class="tl-note">LLMs and language-based agents, with Sarath Chandar and Marc-Alexandre Côté.</p>
             </div>
           </li>
@@ -1111,7 +1114,7 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Associate Researcher, ML &amp; RL</h3>
-              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="A"><img src="https://www.google.com/s2/favicons?domain=amii.ca&amp;sz=64" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span></span>Amii · Edmonton</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="A"><img src="assets/logos/amii.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>Amii · Edmonton</p>
               <p class="tl-note">Offline reinforcement learning, with Martha White.</p>
             </div>
           </li>
@@ -1120,7 +1123,7 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>M.Sc., Computing Science</h3>
-              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="UA"><img src="https://www.google.com/s2/favicons?domain=ualberta.ca&amp;sz=64" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span><span class="org-logo" data-initials="A"><img src="https://www.google.com/s2/favicons?domain=amii.ca&amp;sz=64" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span></span>University of Alberta &amp; Amii · Edmonton</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="UA"><img src="assets/logos/ualberta.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span><span class="org-logo" data-initials="A"><img src="assets/logos/amii.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>University of Alberta &amp; Amii · Edmonton</p>
               <p class="tl-note">Advisors: Alona Fyshe and Martha White.</p>
             </div>
           </li>
@@ -1129,7 +1132,7 @@
             <div class="tl-rail" aria-hidden="true"></div>
             <div class="tl-body">
               <h3>Research Intern</h3>
-              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="ATR"><img src="https://www.google.com/s2/favicons?domain=atr.jp&amp;sz=64" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span></span>ATR · Kyoto, Japan</p>
+              <p class="tl-org"><span class="org-logos" aria-hidden="true"><span class="org-logo" data-initials="ATR"><img src="assets/logos/atr.png" alt="" width="16" height="16" loading="lazy" decoding="async"></span></span>ATR · Kyoto, Japan</p>
               <p class="tl-note">Modelling EEG data with reinforcement learning, with Aurelio Cortese.</p>
             </div>
           </li>
